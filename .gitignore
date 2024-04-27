@@ -1,3 +1,7 @@
 creating_transcript/audio_60.wav
 creating_transcript/audio.wav
 creating_transcript/movie.mkv
+
+creating_dataset/dataset.csv
+creating_dataset/final_dataset.csv
+creating_dataset/checking.py
