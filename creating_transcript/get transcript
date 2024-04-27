@@ -1,0 +1,43 @@
+import speech_recognition as sr
+import moviepy.editor as mp
+import whisper
+
+video = mp.VideoFileClip("movie.mkv")
+
+# audio = video.audio
+# audio.write_audiofile("audio.wav")
+
+# recognizer = sr.Recognizer()
+
+
+# recognizer = sr.Recognizer()
+
+# def transcribe_audio(audio_file):
+#     with sr.AudioFile(audio_file) as source:
+#         audio_data = recognizer.record(source)
+#         return recognizer.recognize_google(audio_data)
+    
+# transcript=transcribe_audio("audio.wav")
+
+# with open("transcript.txt", "w") as file:
+#     file.write(transcript)
+
+# print("Transcript saved as transcript.txt")
+
+from pydub import AudioSegment
+
+audio_file = "audio.wav"
+
+audio = AudioSegment.from_file(audio_file)
+audio_60_seconds = audio[600000:1200000]  
+audio_60_seconds.export("audio_60.wav", format="wav")
+
+def create_and_open_txt(text, filename):
+    with open(filename, "w") as file:
+        file.write(text)
+
+model = whisper.load_model("base")
+result = model.transcribe("audio_60.wav")
+transcribed_text = result["text"]
+
+create_and_open_txt(transcribed_text, 'sherlock.txt')
